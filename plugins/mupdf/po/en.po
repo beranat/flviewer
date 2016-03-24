@@ -1,0 +1,69 @@
+# MuPDF plugin for flViewer
+# This file is put in the public domain.
+# Anatoly L. Berenblit <madrat-@users.noreply.github.com>, 2016
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: fvp_mupdf/flviewer 1.0.0\n"
+"Report-Msgid-Bugs-To: madrat-@users.noreply.github.com\n"
+"POT-Creation-Date: 2016-03-16 14:46+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: Anatoly L. Berenblit <madrat-@users.noreply.github.com>\n"
+"Language-Team: English <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: mupdf.cpp:86
+#, c-format
+msgid ""
+"Please enter password to read the document\n"
+"%s:"
+msgstr ""
+
+#: mupdf.cpp:101
+#, c-format
+msgid ""
+"Incorrect password, try again enter password to read the document\n"
+"%s:"
+msgstr ""
+
+#: mupdf.cpp:264
+msgid ""
+"This software uses MuPDF parsing and rendering PDF, XPS, CBZ, and(or) EPUB "
+"documents.\n"
+"See http://mupdf.com/ for details."
+msgstr ""
+
+#: mupdf.cpp:312
+msgid "Portable Document Files (*.pdf)"
+msgstr ""
+
+#: mupdf.cpp:313
+msgid "XML Paper Specification Files (*.xps)"
+msgstr ""
+
+#: mupdf.cpp:314
+msgid "Comic Book Archive (*.{cbz,zip})"
+msgstr ""
+
+#: mupdf.cpp:315
+msgid "E-Book Files (*.epub)"
+msgstr ""
+
+#: mupdf.cpp:316
+msgid "Images Files (*.{jfif,jpe,jfif-tbnl,jfif})"
+msgstr ""
+
+#: mupdf.cpp:317
+msgid "Tagged Image Files (*.{tif,tiff})"
+msgstr ""
+
+#: mupdf.cpp:318
+msgid "Ghost Proof Files (*.gproof)"
+msgstr ""
+
+#: mupdf.cpp:319
+msgid "HTML/XML Files (*.xml,xhtml,html,htm)"
+msgstr ""

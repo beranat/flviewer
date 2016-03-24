@@ -1,0 +1,311 @@
+# flViewer simple and small viewer
+# Copyright (C) 2016 Anatoly L. Berenblit
+# This file is distributed under the same license as the flViewer package.
+# Anatoly L. Berenblit <madrat-@users.noreply.github.com>
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: flviewer 1.0.0\n"
+"Report-Msgid-Bugs-To: madrat-@users.noreply.github.com\n"
+"POT-Creation-Date: 2016-03-24 15:00+0300\n"
+"PO-Revision-Date: 2016-03-11 17:17+0000\n"
+"Last-Translator: \n"
+"Language-Team: Russian\n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11) ? 0 : ((n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20)) ? 1 : 2);\n"
+
+#: src/main.cpp:72
+#, c-format
+msgid "Option `%s' need an argument."
+msgstr "Опция `%s' требует аргумента."
+
+#: src/main.cpp:97 src/MainWindow.cpp:261
+msgid "No"
+msgstr "Нет"
+
+#: src/main.cpp:98 src/MainWindow.cpp:261
+msgid "Yes"
+msgstr "Да"
+
+#: src/main.cpp:99
+msgid "OK"
+msgstr "OK"
+
+#: src/main.cpp:100
+msgid "Cancel"
+msgstr "Отмена"
+
+#: src/main.cpp:101
+msgid "Close"
+msgstr "Закрыть"
+
+#: src/main.cpp:112
+#, c-format
+msgid "Unknown option `%s'."
+msgstr "Неизвестная опция `%s'."
+
+#: src/MainWindow.cpp:34
+#, c-format
+msgid ""
+"%s version %s\n"
+"Copyright (c) 2016 Anatoly madRat L. Berenblit\n"
+"\n"
+"This program is free software: you can redistribute it and/or modify\n"
+"it under the terms of the GNU General Public License as published by\n"
+"the Free Software Foundation, version 3 of the License.\n"
+"\n"
+"This program is distributed in the hope that it will be useful,\n"
+"but WITHOUT ANY WARRANTY; without even the implied warranty of\n"
+"MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n"
+"See the GNU General Public License for more details.\n"
+"\n"
+"You should have received a copy of the GNU General Public License\n"
+"along with this program.  If not, see <http://www.gnu.org/licenses/>."
+msgstr ""
+"%s версия %s\n"
+"Copyright (c) 2016 Anatoly madRat L. Berenblit\n"
+"\n"
+"Это свободная программа; вы можете повторно распространять ее и/или\n"
+"модифицировать ее в соответствии с GNU General Public License,\n"
+"опубликованной Фондом Свободного ПО версии 3.\n"
+"\n"
+"Эта программа распространяется в надежде, что она будет полезной,\n"
+"но БЕЗ КАКИХ-ЛИБО ГАРАНТИЙ; даже без подразумеваемых гарантий\n"
+"КОММЕРЧЕСКОЙ ЦЕННОСТИ или ПРИГОДНОСТИ ДЛЯ КОНКРЕТНОЙ ЦЕЛИ.\n"
+"Для получения подробных сведений смотрите GNU General Public License.\n"
+"\n"
+"Вы должны были получить копию GNU General Public License\n"
+"вместе с этой программой.\n"
+"Если нет, смотрите <http://www.gnu.org/licenses/>."
+
+#: src/MainWindow.cpp:44
+#, c-format
+msgid ""
+"Plugins:\n"
+"\n"
+"%s"
+msgstr ""
+"Плагины:\n"
+"\n"
+"%s"
+
+#: src/MainWindow.cpp:163
+msgid "Open a file"
+msgstr "Открыть файл"
+
+#: src/MainWindow.cpp:164
+msgid "Fit a page to window size"
+msgstr "Подобрать масштаб страницы под размер окна"
+
+#: src/MainWindow.cpp:165
+msgid "Zoom out"
+msgstr "Уменьшить"
+
+#: src/MainWindow.cpp:166
+msgid "Zoom in"
+msgstr "Увеличить"
+
+#: src/MainWindow.cpp:167
+msgid "Go back one page"
+msgstr "Вернуться на предыдущую страницу"
+
+#: src/MainWindow.cpp:168
+msgid "Go forward one page"
+msgstr "Перейти на следующую страницу"
+
+#: src/MainWindow.cpp:178
+msgid "&File"
+msgstr "&Файл"
+
+#: src/MainWindow.cpp:179
+msgid "&Open..."
+msgstr "&Открыть..."
+
+#: src/MainWindow.cpp:180
+msgid "&Quit"
+msgstr "В&ыход"
+
+#: src/MainWindow.cpp:182
+msgid "&View"
+msgstr "&Вид"
+
+#: src/MainWindow.cpp:183
+msgid "&Zoom"
+msgstr "Масштаб"
+
+#: src/MainWindow.cpp:191
+msgid "Zoom &Out"
+msgstr "Уменьшить"
+
+#: src/MainWindow.cpp:192
+msgid "Zoom &In"
+msgstr "Увеличить"
+
+#: src/MainWindow.cpp:193
+msgid "&Fit Page"
+msgstr "Подогнать размер"
+
+#: src/MainWindow.cpp:194
+msgid "Fit &Width"
+msgstr "По ширине"
+
+#: src/MainWindow.cpp:195
+msgid "&Zoom To..."
+msgstr "Задать масштаб..."
+
+#: src/MainWindow.cpp:197
+msgid "&Navigation"
+msgstr "Перемещение"
+
+#: src/MainWindow.cpp:198
+msgid "First Page"
+msgstr "Первая страница"
+
+#: src/MainWindow.cpp:199
+msgid "Previous Page"
+msgstr "Предыдущая страница"
+
+#: src/MainWindow.cpp:200
+msgid "Next Page"
+msgstr "Следующая страница"
+
+#: src/MainWindow.cpp:201
+msgid "Last Page"
+msgstr "Последняя страница"
+
+#: src/MainWindow.cpp:202
+msgid "&Page..."
+msgstr "К странице..."
+
+#: src/MainWindow.cpp:204
+msgid "&Help"
+msgstr "&Помощь"
+
+#: src/MainWindow.cpp:205
+msgid "About Plug-&Ins..."
+msgstr "О плагинах..."
+
+#: src/MainWindow.cpp:206
+msgid "&About..."
+msgstr "О программе..."
+
+#: src/MainWindow.cpp:260
+#, c-format
+msgid ""
+"Scaled image have an excessively large size (%dx%d).\n"
+"Continue?"
+msgstr ""
+"Увеличение до черезмерных размеров (%dx%d) может отрицательно отразиться на "
+"производительности\n"
+"Продолжить?"
+
+#: src/MainWindow.cpp:261
+msgid "Always Yes"
+msgstr "Всегда"
+
+#: src/MainWindow.cpp:506
+#, c-format
+msgid "Can not load `%s'."
+msgstr "Невозможно загрузить `%s'."
+
+#: src/MainWindow.cpp:606
+msgid "Plugins are not available."
+msgstr "Плагины недоступны."
+
+#: src/MainWindow.cpp:621
+msgid ""
+"All Files (*)\tJPEG Files (*.{jpg,jpeg})\tBitmap Files (*.{png,gif,bmp})\tX-"
+"Window Files (*.{xpm,xbm})"
+msgstr ""
+"Все файлы (*)\tJPEG файлы (*.{jpg,jpeg})\tBitmap файлы (*.{png,gif,bmp})\tX-"
+"Window файлы (*.{xpm,xbm})"
+
+#: src/MainWindow.cpp:627
+msgid "Add to Favorites"
+msgstr "Добавть в избранное"
+
+#: src/MainWindow.cpp:628
+msgid "All Files (*)"
+msgstr "Все файлы (*)"
+
+#: src/MainWindow.cpp:629
+msgid "Custom Filter"
+msgstr "Пользовательский фильтр"
+
+#: src/MainWindow.cpp:630
+msgid "Please choose an existing file!"
+msgstr "Пожалуйста, выберите существующий файл!"
+
+#: src/MainWindow.cpp:631
+msgid "Favorites"
+msgstr "Избранное"
+
+#: src/MainWindow.cpp:632
+msgid "Filename:"
+msgstr "Файл:"
+
+#: src/MainWindow.cpp:633
+msgid "File Systems"
+msgstr "Файловая система"
+
+#: src/MainWindow.cpp:634
+msgid "Show hidden files:"
+msgstr "Отображать скрытые файлы:"
+
+#: src/MainWindow.cpp:635
+msgid "Manage Favorites"
+msgstr "Модифицировать избранное"
+
+#: src/MainWindow.cpp:636
+msgid "Preview"
+msgstr "Предыдущая страница"
+
+#: src/MainWindow.cpp:637
+msgid "Show:"
+msgstr "Отобразить:"
+
+#: src/MainWindow.cpp:639
+msgid "Open file"
+msgstr "Открыть файл"
+
+#: src/MainWindow.cpp:679
+msgid "Only one page is available."
+msgstr "Только одна страница."
+
+#: src/MainWindow.cpp:686
+#, c-format
+msgid "Input page's number (total one page):"
+msgid_plural "Input page's number (total %zu pages):"
+msgstr[0] "Введите номер страницы (всего %zu страница):"
+msgstr[1] "Введите номер страницы (всего %zu страницы):"
+msgstr[2] "Введите номер страницы (всего %zu страниц):"
+
+#: src/MainWindow.cpp:698
+#, c-format
+msgid "Invalid value `%s' can not be a integer value."
+msgstr "Значение `%s' не является целым числом."
+
+#: src/MainWindow.cpp:705
+#, c-format
+msgid "Magnification (%%):"
+msgstr "Увеличение (%%):"
+
+#: src/MainWindow.cpp:712
+#, c-format
+msgid "Invalid value `%s' can not be magnification."
+msgstr "Значение `%s' не может быть коэффициентом увеличения."
+
+#. TRANSLATORS: This message has not plural forms
+#: src/MainWindow.cpp:784
+#, c-format
+msgid "Incorrect value `%zu', must be not greater then %zu."
+msgstr "Некорректное значение `%zu', должно быть не более чем %zu."
+
+#: src/MainWindow.cpp:795
+#, c-format
+msgid "The page number `%zu' can not be found in the document."
+msgstr "Страницу номер %zu невозможно найти в документе."

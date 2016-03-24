@@ -1,0 +1,3 @@
+ flviewer
+===========
+flViewer is a FLTK Image Viewer who combines the small size and acceptable functionalities with the versatility of supporting different kind of images, which may be extended by plugins.

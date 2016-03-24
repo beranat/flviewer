@@ -1,0 +1,37 @@
+/* XPM */
+static char *load[] = {
+/* columns rows colors chars-per-pixel */
+"24 24 7 1 ",
+"  c black",
+". c #F2870E",
+"X c #A8FF00",
+"o c blue",
+"O c #B6C4C4",
+"+ c white",
+"@ c None",
+/* pixels */
+"@@@@@@@@@@@@@@@@@@@@@@@@",
+"oooo              o@@@@@",
+"ooooOOOOOOOOOooooOoo@@@@",
+"ooooOOOOOOOOOooooOoo@@@@",
+"ooooOOOOOOOOOooooOoo@@@@",
+"ooooOOOOOOOOOooooOoo@@@@",
+"ooooOOOOOOOOOooooOoo@@@@",
+"ooooOOOOOOOOOoo   oo@@@@",
+"ooooOOOOOOOOOOO XX o@@@@",
+"ooooooooooooooo XXX @@@@",
+"ooooooooooo     XXXX @@@",
+"o++++++++++ XXXXXXXXX @@",
+"o++++++++++ XXXXXXXXXX @",
+"o.......... XXXXXXXXXXX ",
+"o++++++++++ XXXXXXXXXX @",
+"o++++++++++ XXXXXXXXX @@",
+"o..........     XXXX @@@",
+"o++++++++++++++ XXX @@@@",
+"o++++++++++++++ XX o@@@@",
+"o++++++++++++++   +o@@@@",
+"o..................o@@@@",
+"o..................o@@@@",
+"oooooooooooooooooooo@@@@",
+"@@@@@@@@@@@@@@@@@@@@@@@@"
+};

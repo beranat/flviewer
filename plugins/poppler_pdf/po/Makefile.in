@@ -1,0 +1,78 @@
+PACKAGE = @PACKAGE@
+VERSION = @VERSION@
+PACKAGE_BUGREPORT = @PACKAGE_BUGREPORT@
+
+srcdir = @srcdir@
+top_srcdir = @top_srcdir@
+
+prefix = @prefix@
+exec_prefix = @exec_prefix@
+datarootdir = @datarootdir@
+datadir = @datadir@
+localedir = @localedir@
+
+INSTALL = @INSTALL@
+INSTALL_DATA = @INSTALL_DATA@
+
+MKDIR_P = @MKDIR_P@
+
+GMSGFMT = @GMSGFMT@
+MSGFMT = @MSGFMT@
+XGETTEXT = @XGETTEXT@
+MSGMERGE = msgmerge
+MSGMERGE_UPDATE = @MSGMERGE@ --update
+MSGINIT = msginit
+MSGCONV = msgconv
+MSGFILTER = msgfilter
+
+POFILES = $(wildcard *.po)
+GMOFILES = $(POFILES:.po=.gmo)
+
+.SUFFIXES: .po .gmo
+
+all: update-gmo
+
+.po.mo:
+	@echo "$(MSGFMT) -c -o $@ $<"; \
+	$(MSGFMT) -c -o t-$@ $< && mv t-$@ $@
+
+.po.gmo:
+	@lang=`echo $* | sed -e 's,.*/,,'`; \
+	rm -f $${lang}.gmo && $(GMSGFMT) -c --statistics --verbose -o t-$${lang}.gmo $${lang}.po && mv t-$${lang}.gmo $${lang}.gmo
+
+update-po: $(srcdir)/fvp_poppler_pdf.pot
+	$(MAKE) $(POFILES)
+
+update-gmo:
+	$(MAKE) $(GMOFILES)
+
+%.po: $(srcdir)/fvp_poppler_pdf.pot
+	@lang=`echo $@ | sed -e 's/\.po$$//'`; \
+	tmpdir=`pwd`; \
+	$(MSGMERGE) $(MSGMERGE_OPTIONS) --lang=$$lang -o $$tmpdir/$$lang.new.po $$lang.po fvp_poppler_pdf.pot; \
+	if cmp $$lang.po $$tmpdir/$$lang.new.po >/dev/null 2>&1; then \
+		rm -f $$tmpdir/$$lang.new.po; \
+	else \
+		if mv -f $$tmpdir/$$lang.new.po $$lang.po; then \
+			:; \
+		else \
+			echo "msgmerge for $$lang.po failed: cannot move $$tmpdir/$$lang.new.po to $$lang.po" 1>&2; \
+			exit 1; \
+		fi; \
+	fi; \
+
+clean:
+	rm -f fvp_poppler_pdf.po *.new.po 
+	rm -fr *.gmo
+
+distclean: clean
+	rm -f *.mo
+
+install: $(GMOFILES)
+	$(mkdir_p) $(DESTDIR)$(localedir); \
+	for file in $(GMOFILES); do \
+		lang=`echo $$file | sed -e 's/\.gmo$$//'`; \
+		dir=$(localedir)/$$lang/LC_MESSAGES; \
+		$(MKDIR_P) $(DESTDIR)$$dir; \
+		$(INSTALL_DATA) $(srcdir)/$$file $(DESTDIR)$$dir/fvp_poppler_pdf.mo;\
+	done;

@@ -1,0 +1,16 @@
+[Desktop Entry]
+Version=1.0
+Name=flViewer
+GenericName=flViewer
+Comment=FLTK image viewer
+Exec=flviewer
+Icon=flviewer
+Terminal=false
+Type=Application
+Categories=Utility;Viewer;FLTK;
+X-FullPathIcon=@prefix@/share/pixmaps/flviewer.png
+MimeType=image/bmp;image/jpeg;image/png;image/x-xpixmap;image/tiff;image/x-xbitmap;image/x-xpixmap;application/pdf
+Keywords=Viewer;Image;Pdf;
+Name[ru]=flViewer
+GenericName[ru]=flViewer
+Comment[ru]=Просмотр изображений

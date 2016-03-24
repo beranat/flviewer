@@ -1,0 +1,34 @@
+/* XPM */
+static char *zoom_in[] = {
+/* columns rows colors chars-per-pixel */
+"24 24 4 1 ",
+"  c black",
+". c #7FBF00",
+"X c white",
+"o c None",
+/* pixels */
+"ooooooooooooo     oooooo",
+"ooooooooooo         oooo",
+"oooooooooo           ooo",
+"ooooooooo    XXXXX    oo",
+"oooooooo    XX...XX    o",
+"oooooooo   XXX...XXX   o",
+"ooooooo   XXXX...XXXX   ",
+"ooooooo   X.........X   ",
+"ooooooo   X.........X   ",
+"ooooooo   X.........X   ",
+"ooooooo   XXXX...XXXX   ",
+"oooooooo   XXX...XXX   o",
+"oooooooo    XX...XX    o",
+"ooooooo X    XXXXX    oo",
+"oooooo X X           ooo",
+"ooooo X   X         oooo",
+"oooo X   X oo     oooooo",
+"ooo X   X oooooooooooooo",
+"oo X   X ooooooooooooooo",
+"o X   X oooooooooooooooo",
+" X   X ooooooooooooooooo",
+"o   X oooooooooooooooooo",
+"oo X ooooooooooooooooooo",
+"ooo oooooooooooooooooooo"
+};

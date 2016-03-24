@@ -1,2 +1,0 @@
-# flviewer
-FLTK Image Viewer

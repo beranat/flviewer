@@ -1,0 +1,34 @@
+flViewer Plugin Development
+===========================
+
+Module 
+------
+
+Export plugin::Info nammed 'module' from shared object with
+* name - Plugin's name.
+* version - Plugin's version which defines plugin::Info structure.
+* priority - lower value - try load image during plugin early.
+* init - Initialization function handle (may be NULL).
+* done - Deinitialization function handle (may be NULL).
+* pattern - Supported files pattern mask.
+* load - load file handle.
+
+=== Initialization
+Called when module is loaded.
+
+=== Module description
+May return module description, license and etc.
+
+=== Deinitialization
+Release module's resource before unloading.
+
+=== Load pattern
+Return a Fltk's Fl_File_Chooser compatible list of supported patterns.
+It can be a series of descriptions and filter strings separated by tab characters (\t). The format of filters is either "Description text (patterns)" or just "patterns". 
+
+=== Creating MultipageImage
+Return the class that can produce bitmap from file. If file can not be loaded should return NULL or instance with invalid width or height.
+
+MultipageImage 
+--------------
+Loads, switch pages and render page to Fl_Image.
