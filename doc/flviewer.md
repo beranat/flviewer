@@ -36,9 +36,7 @@ Copyright (c) 2017 Anatoly madRat L. Berenblit.
 
 License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>.
 
-This is free software: you are free to change and redistribute it.
-
-There is NO WARRANTY, to the extent permitted by law.
+This is free software: you are free to change and redistribute it. There is NO WARRANTY, to the extent permitted by law.
 
 # SEE ALSO
 Source code at: <http://github.com/madrat-/flviewer>.

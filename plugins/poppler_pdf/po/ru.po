@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: flviewer/poppler_pdf plugin 1.0.0\n"
-"Report-Msgid-Bugs-To: host@mail.ru\n"
+"Report-Msgid-Bugs-To: madrat-@users.noreply.github.com\n"
 "POT-Creation-Date: 2016-03-16 14:46+0300\n"
 "PO-Revision-Date: 2016-03-11 17:17+0000\n"
 "Last-Translator: \n"

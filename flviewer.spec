@@ -44,7 +44,7 @@ BuildArch: noarch
 Requires: %{name} = %{version}
 
 %description l10n
-Plugins (Extensions) development packages. It includes all necessary headers.
+Localization files for flviewer and some its plugins.
 
 %package libtiff
 Summary: TIFF image support for %{name} using libtiff
@@ -53,7 +53,7 @@ Requires: %{name} = %{version}
 Requires: libtiff
 
 %description libtiff
-TIFF image support for %{name} using libtiff
+Flviewer's plugin implements viewing Tagged Image Files (TIFF).
 
 %package poppler_pdf
 Summary: PDF support for %{name} using poppler_pdf
@@ -62,7 +62,7 @@ Requires: %{name} = %{version}
 Requires: poppler-cpp poppler
 
 %description poppler_pdf
-PDF support for %{name} using poppler_pdf
+Flviewers plugin implements viewing Portable Documents (PDF).
 
 %if %with mupdf
 %package mupdf
@@ -71,7 +71,7 @@ Group: Graphics/Libraries
 Requires: %{name} = %{version}
 
 %description mupdf
-Allow to view all formats from MuPDF (pdf, cbz, some images formats).
+Flviewers plugin implements viewing all formats, supported by MuPDF (pdf, xps, cbz, epub, html/xml and some images formats).
 %endif
 
 %prep
