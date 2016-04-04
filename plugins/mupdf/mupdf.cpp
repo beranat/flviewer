@@ -33,22 +33,22 @@ extern "C" plugin::Info module;
 #define MIN_HEIGHT		16
 
 volatile int 	 semaphore_ = -1;
-fz_context 		*context_ = NULL;
+fz_context*		 context_ = NULL;
 std::string 	 pattern_;
 
 void unlock()
 {
-	static struct sembuf _unlock= { 0, 1, IPC_NOWAIT};
-    if ((semop(semaphore_, &_unlock, 1)) == -1)
+	static struct sembuf _unlock = { 0, 1, IPC_NOWAIT};
+	if ((semop(semaphore_, &_unlock, 1)) != 0)
 		fprintf(stderr, "%s: Unlock error %d.\n", module.name, errno);
 }
 
 bool lock()
 {
-	static struct sembuf _lock={0, -1, 0};
-	if ((semop(semaphore_, &_lock, 1)) != -1)
+	static struct sembuf _lock = {0, -1, 0};
+	if ((semop(semaphore_, &_lock, 1)) == 0)
 		return true;
-	fprintf(stderr, "%s: lock error %d.\n", module.name, errno);
+	fprintf(stderr, "%s: Lock error %d.\n", module.name, errno);
 	return false;
 }
 
@@ -87,50 +87,50 @@ MuPDF::MuPDF(const char* filename) : filename_(filename),
 {
 	assert(NULL != context_);
 	{
-	Guard guard;
-	fz_try(context_)
-	{
-		document_ = fz_open_document(context_, filename);
-		if (NULL == document_)
-			fz_throw(context_, 1, "Not supported format");
-
-		if (fz_needs_password(context_, document_))
+		Guard guard;
+		fz_try(context_)
 		{
-			bool isEncrypted = true;
-			const char* msg = _("Please enter password to read the document\n%s:");
-			do
+			document_ = fz_open_document(context_, filename);
+			if (NULL == document_)
+				fz_throw(context_, 1, "Not supported format");
+
+			if (fz_needs_password(context_, document_))
 			{
-				guard.unlock();
-				fl_beep(FL_BEEP_PASSWORD);
-				const char* pass = fl_password(msg, NULL, filename);
-				guard.lock();
-				if (NULL == pass)
-					break;
-
-				if (fz_authenticate_password(context_, document_, pass))
+				bool isEncrypted = true;
+				const char* msg = _("Please enter password to read the document\n%s:");
+				do
 				{
-					isEncrypted = false;
-					break;
+					guard.unlock();
+					fl_beep(FL_BEEP_PASSWORD);
+					const char* pass = fl_password(msg, NULL, filename);
+					guard.lock();
+					if (NULL == pass)
+						break;
+
+					if (fz_authenticate_password(context_, document_, pass))
+					{
+						isEncrypted = false;
+						break;
+					}
+					msg = _("Incorrect password, try again enter password to read the document\n%s:");
 				}
-				msg = _("Incorrect password, try again enter password to read the document\n%s:");
+				while (true);
+
+				if (isEncrypted)
+					fz_throw(context_, 1, "Encrypted");
+
 			}
-			while (true);
-
-			if (isEncrypted)
-				fz_throw(context_, 1, "Encrypted");
-
 		}
-	}
-	fz_catch(context_)
-	{
-		fprintf(stderr, "%s: Error %s while oppening `%s'.\n", module.name, fz_caught_message(context_), filename);
-		if (NULL != document_)
+		fz_catch(context_)
 		{
-			fz_drop_document(context_, document_);
-			document_ = NULL;
+			fprintf(stderr, "%s: Error %s while oppening `%s'.\n", module.name, fz_caught_message(context_), filename);
+			if (NULL != document_)
+			{
+				fz_drop_document(context_, document_);
+				document_ = NULL;
+			}
+			return;
 		}
-		return;
-	}
 	}
 	page(0);
 }
@@ -199,7 +199,7 @@ bool MuPDF::page(size_t page)
 	if (num_pages > 1)
 	{
 		char buf[128] = { 0 };
-		snprintf(buf, sizeof(buf) / sizeof(*buf) - 1, _("[%zd/%zd] "), page+1, num_pages);
+		snprintf(buf, sizeof(buf) / sizeof(*buf) - 1, _("[%zd/%zd] "), page + 1, num_pages);
 		name_ = buf;
 	}
 	name_ += filename_;
@@ -247,7 +247,7 @@ Fl_Image* MuPDF::copy(int cx, int cy)
 	fz_pixmap* pix = NULL;
 
 	fz_try(context_)
-		pix = fz_new_pixmap_from_page(context_, page_, &tm, fz_device_rgb(context_));
+	pix = fz_new_pixmap_from_page(context_, page_, &tm, fz_device_rgb(context_));
 	fz_catch(context_)
 	{
 		fprintf(stderr, "%s: Render error `%s' in %s:%zu.\n", module.name, fz_caught_message(context_), filename_.c_str(), index_);
@@ -282,10 +282,10 @@ const char* desc()
 			 "See http://mupdf.com/ for details.");
 }
 
-void register_document(fz_document_handler &handler, const char *name, const char *pattern)
+void register_document(fz_document_handler& handler, const char* name, const char* pattern)
 {
 	fz_try(context_)
-		fz_register_document_handler(context_, &handler);
+	fz_register_document_handler(context_, &handler);
 	fz_catch(context_)
 	{
 		fprintf(stderr, "%s: Format `%s' registration error `%s'.\n", module.name, name, fz_caught_message(context_));
@@ -321,8 +321,14 @@ bool init()
 		return false;
 	}
 
-	int val = 1;
-	if (-1 == semctl(semaphore_, 0, SETVAL, &val))
+	union semun
+	{
+		int val;
+		struct semid_ds* buf;
+		ushort* array;
+	} arg;
+	arg.val = 1;
+	if (-1 == semctl(semaphore_, 0, SETVAL, arg))
 	{
 		fprintf(stderr, "%s: Can not init semaphore (%d).\n", module.name, errno);
 		done();
@@ -340,11 +346,11 @@ bool init()
 	register_document(pdf_document_handler, "PDF",  _("Portable Document Files (*.pdf)"));
 	register_document(xps_document_handler, "XPS",  _("XML Paper Specification Files (*.xps)"));
 	register_document(cbz_document_handler, "cbz",  _("Comic Book Archive (*.{cbz,zip})"));
-	register_document(epub_document_handler,"EPub", _("E-Book Files (*.epub)"));
+	register_document(epub_document_handler, "EPub", _("E-Book Files (*.epub)"));
 	register_document(img_document_handler, "Img",  _("Images Files (*.{jfif,jpe,jfif-tbnl,jfif})"));
-	register_document(tiff_document_handler, "Tiff",_("Tagged Image Files (*.{tif,tiff})"));
-	//register_document(gprf_document_handler, "Gproof",_("Ghost Proof Files (*.gproof)"));
-	register_document(html_document_handler, "HTML/XML",_("HTML/XML Files (*.xml,xhtml,html,htm)"));
+	register_document(tiff_document_handler, "Tiff", _("Tagged Image Files (*.{tif,tiff})"));
+	register_document(html_document_handler, "HTML/XML", _("HTML/XML Files (*.xml,xhtml,html,htm)"));
+//	register_document(gprf_document_handler, "Gproof",_("Ghost Proof Files (*.gproof)"));
 
 	if (pattern_.empty())
 	{

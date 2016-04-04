@@ -660,7 +660,7 @@ void MainWindow::onZoomFit(bool isPage)
 			const float sx = uiScroll_->w() * 1.0f / source_->w();
 			const float sy = uiScroll_->h() * 1.0f / source_->h();
 			scale = std::min(sx, sy);
-			if (sx * sy > SMART_ZOOM_MAX)
+			if (scale > SMART_ZOOM_MAX)
 				scale = SMART_ZOOM_MAX;
 		}
 		setScale(scale);
