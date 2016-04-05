@@ -56,7 +56,7 @@ Requires: libtiff
 Flviewer's plugin implements viewing Tagged Image Files (TIFF).
 
 %package poppler_pdf
-Summary: PDF support for %{name} using poppler_pdf
+Summary: PDF support for %{name} using poppler and poppler-cpp
 Group: Graphics/Libraries
 Requires: %{name} = %{version}
 Requires: poppler-cpp poppler

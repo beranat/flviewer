@@ -1,3 +1,12 @@
  flviewer
 ===========
 flViewer is a FLTK Image Viewer who combines the small size and acceptable functionalities with the versatility of supporting different kind of images, which may be extended by plugins.
+
+ Plugins
+----------
+* libTIFF
+    Implements viewing Tagged Image Files (TIFF).
+* Poppler_pdf
+    Implements viewing Portable Documents (PDF) using poppler and poppler-cpp.
+* MuPDF
+    Implements viewing all formats, supported by MuPDF (pdf, xps, cbz, epub, html/xml and some images formats).
