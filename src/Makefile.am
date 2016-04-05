@@ -4,7 +4,7 @@ flviewer_SOURCES=main.cpp \
 				DirImage.cpp DirImage.h \
 				MainWindow.cpp MainWindow.h
 
-flviewer_LDADD=@FLTKLIBS@
+flviewer_LDADD=@FLTKLIBS_IMAGES@
 flviewer_CPPFLAGS=-I$(top_srcdir)/include -I$(top_srcdir)/share/icons -DLOCALEDIR=\"$(localedir)\"
 flviewer_CXXFLAGS=@FLTKCXXFLAGS@
 flviewer_CFLAGS=@FLTKCFLAGS@

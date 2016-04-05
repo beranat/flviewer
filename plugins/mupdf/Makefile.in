@@ -134,7 +134,9 @@ am__uninstall_files_from_dir = { \
   }
 am__installdirs = "$(DESTDIR)$(pkglibdir)"
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
-fvp_mupdf_la_DEPENDENCIES =
+fvp_mupdf_la_DEPENDENCIES = $(mupdf_lib)/libmupdf.a \
+	$(mupdf_lib)/libjbig2dec.a $(mupdf_lib)/libjpeg.a \
+	$(mupdf_lib)/libopenjpeg.a $(mupdf_lib)/libmujs.a
 am_fvp_mupdf_la_OBJECTS = fvp_mupdf_la-mupdf.lo
 fvp_mupdf_la_OBJECTS = $(am_fvp_mupdf_la_OBJECTS)
 AM_V_lt = $(am__v_lt_@AM_V@)
@@ -297,8 +299,10 @@ FGREP = @FGREP@
 FLTKCFLAGS = @FLTKCFLAGS@
 FLTKCXXFLAGS = @FLTKCXXFLAGS@
 FLTKLIBS = @FLTKLIBS@
+FLTKLIBS_IMAGES = @FLTKLIBS_IMAGES@
 FLTK_CONFIG = @FLTK_CONFIG@
 GETTEXT_MACRO_VERSION = @GETTEXT_MACRO_VERSION@
+GETTEXT_PATH = @GETTEXT_PATH@
 GMSGFMT = @GMSGFMT@
 GMSGFMT_015 = @GMSGFMT_015@
 GREP = @GREP@
@@ -423,10 +427,11 @@ top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 @SUPPORT_I18N_TRUE@SUBDIRS = po
 mupdf_dir = @MUPDF_DIR@
+mupdf_lib = $(mupdf_dir)/build/release
 pkglib_LTLIBRARIES = fvp_mupdf.la
-AM_LDFLAGS = -avoid-version -module -fPIC -shared -export-dynamic
+AM_LDFLAGS = -avoid-version -module -fPIC -shared -Wl,--version-script=mupdf.map
 fvp_mupdf_la_SOURCES = mupdf.cpp mupdf.h
-fvp_mupdf_la_LIBADD = @FLTKLIBS@ -L"$(mupdf_dir)/build/release" -lmupdf -lfreetype -ljbig2dec -ljpeg -lmujs -lopenjpeg -lz -lcrypto -lm
+fvp_mupdf_la_LIBADD = @FLTKLIBS@ $(mupdf_lib)/libmupdf.a $(mupdf_lib)/libjbig2dec.a $(mupdf_lib)/libjpeg.a $(mupdf_lib)/libopenjpeg.a $(mupdf_lib)/libmujs.a -lfreetype -lz -lcrypto -lm
 fvp_mupdf_la_CPPFLAGS = $(COMMON_CFLAGS) -I$(top_srcdir)/include $(FLTKCXXFLAGS) -DFLVIEWER_PLUGIN -DPLUGIN_DIR=\"$(PLUGIN_DIR)\" -DLOCALEDIR=\"$(localedir)\" -I"$(mupdf_dir)/include" -fPIC -shared
 all: all-recursive
 

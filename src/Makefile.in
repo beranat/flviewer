@@ -276,8 +276,10 @@ FGREP = @FGREP@
 FLTKCFLAGS = @FLTKCFLAGS@
 FLTKCXXFLAGS = @FLTKCXXFLAGS@
 FLTKLIBS = @FLTKLIBS@
+FLTKLIBS_IMAGES = @FLTKLIBS_IMAGES@
 FLTK_CONFIG = @FLTK_CONFIG@
 GETTEXT_MACRO_VERSION = @GETTEXT_MACRO_VERSION@
+GETTEXT_PATH = @GETTEXT_PATH@
 GMSGFMT = @GMSGFMT@
 GMSGFMT_015 = @GMSGFMT_015@
 GREP = @GREP@
@@ -402,7 +404,7 @@ top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 flviewer_SOURCES = main.cpp DirImage.cpp DirImage.h MainWindow.cpp \
 	MainWindow.h $(am__append_1)
-flviewer_LDADD = @FLTKLIBS@ $(am__append_2)
+flviewer_LDADD = @FLTKLIBS_IMAGES@ $(am__append_2)
 flviewer_CPPFLAGS = -I$(top_srcdir)/include \
 	-I$(top_srcdir)/share/icons -DLOCALEDIR=\"$(localedir)\" \
 	$(am__append_3)

@@ -655,6 +655,7 @@ PKG_CONFIG_PATH
 PKG_CONFIG
 BUILD_POPPLER_PDF_FALSE
 BUILD_POPPLER_PDF_TRUE
+FLTKLIBS_IMAGES
 FLTKLIBS
 FLTKCXXFLAGS
 FLTKCFLAGS
@@ -667,6 +668,7 @@ CXXDEPMODE
 ac_ct_CXX
 CXXFLAGS
 CXX
+GETTEXT_PATH
 POSUB
 LTLIBINTL
 LIBINTL
@@ -14557,6 +14559,50 @@ $as_echo "#define HAVE_DCGETTEXT 1" >>confdefs.h
 
 
 
+		# Extract the first word of "gettext", so it can be a program name with args.
+set dummy gettext; ac_word=$2
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
+$as_echo_n "checking for $ac_word... " >&6; }
+if ${ac_cv_path_GETTEXT_PATH+:} false; then :
+  $as_echo_n "(cached) " >&6
+else
+  case $GETTEXT_PATH in
+  [\\/]* | ?:[\\/]*)
+  ac_cv_path_GETTEXT_PATH="$GETTEXT_PATH" # Let the user override the test with a path.
+  ;;
+  *)
+  as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
+for as_dir in $PATH
+do
+  IFS=$as_save_IFS
+  test -z "$as_dir" && as_dir=.
+    for ac_exec_ext in '' $ac_executable_extensions; do
+  if as_fn_executable_p "$as_dir/$ac_word$ac_exec_ext"; then
+    ac_cv_path_GETTEXT_PATH="$as_dir/$ac_word$ac_exec_ext"
+    $as_echo "$as_me:${as_lineno-$LINENO}: found $as_dir/$ac_word$ac_exec_ext" >&5
+    break 2
+  fi
+done
+  done
+IFS=$as_save_IFS
+
+  test -z "$ac_cv_path_GETTEXT_PATH" && ac_cv_path_GETTEXT_PATH="no"
+  ;;
+esac
+fi
+GETTEXT_PATH=$ac_cv_path_GETTEXT_PATH
+if test -n "$GETTEXT_PATH"; then
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: $GETTEXT_PATH" >&5
+$as_echo "$GETTEXT_PATH" >&6; }
+else
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+fi
+
+
+		if test "$GETTEXT_PATH" == "no"; then :
+  as_fn_error $? "gettext is not found" "$LINENO" 5
+fi
 
 $as_echo "#define SUPPORT_I18N /**/" >>confdefs.h
 
@@ -19310,7 +19356,7 @@ done
   done
 IFS=$as_save_IFS
 
-  test -z "$ac_cv_path_FLTK_CONFIG" && ac_cv_path_FLTK_CONFIG="as_fn_error $? "fltk-config is not found" "$LINENO" 5"
+  test -z "$ac_cv_path_FLTK_CONFIG" && ac_cv_path_FLTK_CONFIG="no"
   ;;
 esac
 fi
@@ -19324,6 +19370,9 @@ $as_echo "no" >&6; }
 fi
 
 
+if test "$FLTK_CONFIG" == "no"; then :
+  as_fn_error $? "fltk-config is not found" "$LINENO" 5
+fi
 
 { $as_echo "$as_me:${as_lineno-$LINENO}: checking for FLTK 1.3" >&5
 $as_echo_n "checking for FLTK 1.3... " >&6; }
@@ -19341,7 +19390,9 @@ fi
 $as_echo "yes" >&6; }
 FLTKCFLAGS=`${FLTK_CONFIG} --cflags`
 FLTKCXXFLAGS=`${FLTK_CONFIG} --cxxflags`
-FLTKLIBS=`${FLTK_CONFIG} --use-images --ldflags`
+FLTKLIBS=`${FLTK_CONFIG} --ldflags`
+FLTKLIBS_IMAGES=`${FLTK_CONFIG} --use-images --ldflags`
+
 
 
 

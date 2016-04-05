@@ -1,0 +1,4 @@
+{
+global: module; _init; _fini;
+local: *;
+};

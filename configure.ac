@@ -68,6 +68,8 @@ AM_COND_IF([SUPPORT_I18N],
 	[
 		AM_PO_SUBDIRS
 		AM_GNU_GETTEXT([external], [need-ngettext])
+		AC_PATH_PROG(GETTEXT_PATH, gettext, no)
+		AS_IF([test "$GETTEXT_PATH" == "no"], [AC_MSG_ERROR([gettext is not found])])
 		AC_DEFINE(SUPPORT_I18N, [], [Internationalization (i18n) enabled])
 	]
 )
@@ -94,7 +96,8 @@ AC_SUBST(LIBM)
 
 dnl ------------------------------------
 #   fltk library and headers
-AC_PATH_PROG(FLTK_CONFIG, fltk-config, AC_MSG_ERROR([fltk-config is not found]))
+AC_PATH_PROG(FLTK_CONFIG, fltk-config, no)
+AS_IF([test "$FLTK_CONFIG" == "no"], [AC_MSG_ERROR([fltk-config is not found])])
 
 AC_MSG_CHECKING([for FLTK 1.3])
 FLTK_VERSION=`${FLTK_CONFIG} --api-version`
@@ -108,10 +111,12 @@ AS_IF([test ${FLTK_VERSION} != "1.3"],
 AC_MSG_RESULT([yes])
 FLTKCFLAGS=`${FLTK_CONFIG} --cflags`
 FLTKCXXFLAGS=`${FLTK_CONFIG} --cxxflags`
-FLTKLIBS=`${FLTK_CONFIG} --use-images --ldflags`
+FLTKLIBS=`${FLTK_CONFIG} --ldflags`
+FLTKLIBS_IMAGES=`${FLTK_CONFIG} --use-images --ldflags`
 AC_SUBST(FLTKCFLAGS)
 AC_SUBST(FLTKCXXFLAGS)
 AC_SUBST(FLTKLIBS)
+AC_SUBST(FLTKLIBS_IMAGES)
 
 dnl ------------------------------------
 # Standart plugins 
