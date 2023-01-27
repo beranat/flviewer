@@ -1,6 +1,6 @@
 % flViewer(1) 1.0.0 | User Commands
 %
-% 2016 April 05
+% 2023 January 27
 
 # NAME
 flviewer - fast and small image viewer

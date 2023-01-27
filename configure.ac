@@ -1,5 +1,5 @@
 dnl ------------------------------------
-#   -   flViewer autoconf script
+dnl -   flViewer autoconf script
 dnl ------------------------------------
 AC_PREREQ([2.69])
 AC_COPYRIGHT([Copyright 2016 flViewer authors])
@@ -21,8 +21,10 @@ AM_INIT_AUTOMAKE
 DATE=$(date +"%Y %B %d")
 AC_SUBST(DATE)
 
+AM_CONDITIONAL(HAVE_LD_VERSION_SCRIPT, false)
+
 dnl ------------------------------------
-#    Dynamic loadable modules and libtool
+dnl    Dynamic loadable modules and libtool
 AC_ARG_ENABLE([plugins],
 	AS_HELP_STRING([--disable-plugins], [Enable plugins support (default enabled)]),
 	[],
@@ -43,8 +45,8 @@ dnl		LTDL_INIT([subproject])
 		AC_PROG_LIBTOOL
 
 		AC_CHECK_HEADERS([ltdl.h], [],  AC_MSG_ERROR([libtool-ltdl-devel is not found]))
-		AC_CHECK_LIB(ltdl, [lt_dlopen], 
-			[LTDL_LIBS=-lltdl], 
+		AC_CHECK_LIB(ltdl, [lt_dlopen],
+			[LTDL_LIBS=-lltdl],
 			AC_MSG_ERROR([libtool-ltdl is not found]))
 		AC_SUBST(LTDL_LIBS)
 		PLUGIN_DIR=`echo $libdir/flviewer`
@@ -52,7 +54,7 @@ dnl		LTDL_INIT([subproject])
 		AC_DEFINE(SUPPORT_PLUGINS, [], [Support dynamic plugins])
 		AC_CONFIG_FILES([plugins/Makefile])
 
-		PLUGINS=""
+		plugins=""
 	]
 )
 
@@ -119,9 +121,9 @@ AC_SUBST(FLTKLIBS)
 AC_SUBST(FLTKLIBS_IMAGES)
 
 dnl ------------------------------------
-# Standart plugins 
+# Standart plugins
 
-# poppler PDF 
+# poppler PDF
 AC_ARG_ENABLE([poppler_pdf],
     AS_HELP_STRING([--disable-poppler_pdf], [Build Poppler PDF plugin (default enabled)]),
 	[],
@@ -131,15 +133,15 @@ AC_ARG_ENABLE([poppler_pdf],
 AM_CONDITIONAL([BUILD_POPPLER_PDF], [test "x${enable_poppler_pdf}" != "xno" -a -z "$SUPPORT_PLUGINS_TRUE"])
 AM_COND_IF([BUILD_POPPLER_PDF],
 	[
-		PKG_CHECK_MODULES([POPPLER_CPP], [poppler-cpp], [], 
+		PKG_CHECK_MODULES([POPPLER_CPP], [poppler-cpp], [],
 			AC_MSG_ERROR([poppler-cpp is not found]))
 		AC_CONFIG_FILES([plugins/poppler_pdf/Makefile])
 		AM_COND_IF([SUPPORT_I18N],	[AC_CONFIG_FILES([plugins/poppler_pdf/po/Makefile])])
-		PLUGINS+="fvp_poppler_pdf "
+		plugins="${plugins} fvp_poppler_pdf"
 	]
 )
 
-dnl mupdf plugin needs a mupdf 
+dnl mupdf plugin needs a mupdf
 AC_ARG_WITH([mupdf],
     AS_HELP_STRING([--with-mupdf], [Build mupdf plugin and specify path to source]),
 	[with_mupdf="$withval"],
@@ -153,12 +155,12 @@ AM_COND_IF([BUILD_MUPDF],
 		MUPDF_DIR="$with_mupdf"
 		AC_SUBST(MUPDF_DIR)
         AM_COND_IF([SUPPORT_I18N],  [AC_CONFIG_FILES([plugins/mupdf/po/Makefile])])
-        PLUGINS+="fvp_mupdf "
+		plugins="${plugins} fvp_mupdf"
     ]
 )
 
 
-dnl libTIFF 
+dnl libTIFF
 AC_ARG_ENABLE([libtiff],
     AS_HELP_STRING([--disable-libtiff], [Build TIFF plugin (default enabled)]),
 	[],
@@ -167,11 +169,11 @@ AC_ARG_ENABLE([libtiff],
 AM_CONDITIONAL([BUILD_LIBTIFF], [test "x${enable_libtiff}" != "xno" -a -z "$SUPPORT_PLUGINS_TRUE" ])
 AM_COND_IF([BUILD_LIBTIFF],
 	[
-		PKG_CHECK_MODULES([LIBTIFF], [libtiff-4], [], 
-			PKG_CHECK_MODULES([LIBTIFF], [libtiff], [], 
+		PKG_CHECK_MODULES([LIBTIFF], [libtiff-4], [],
+			PKG_CHECK_MODULES([LIBTIFF], [libtiff], [],
 				AC_MSG_ERROR([libtiff-devel is not found])))
 		AC_CONFIG_FILES([plugins/libtiff/Makefile])
-		PLUGINS+="fvp_libtiff "
+		plugins="${plugins} fvp_libtiff"
 	]
 )
 
@@ -191,12 +193,12 @@ AC_CONFIG_FILES([share/Makefile])
 AC_CONFIG_FILES([share/flviewer.desktop.in])
 AC_OUTPUT
 
-# show summory
+dnl show summory
 AC_MSG_RESULT([
 flViewer configuration
 ----------------------------------------
 Version            : ${VERSION}
 Localization       : ${enable_i18n}
 Plug-ins suppport  : ${enable_plugins}
-Plug-ins           : ${PLUGINS}
+Plug-ins           :${plugins}
 ])
